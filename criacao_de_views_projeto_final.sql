@@ -4,11 +4,14 @@ USE projetos_empresa;
 
 CREATE VIEW equipe_projetos AS
 SELECT gerentes.id AS gerente_id,
-gerentes.nome_sobrenome AS nome_completo,
+gerentes.nome_sobrenome AS nome_gerente,
+gerentes.cidade AS filial,
+gerentes.estado,
 cadastro_projetos.descricao AS nome_projeto,
 membros_projeto.nome_completo AS membros_projeto,
 membros_projeto.setor,
-membros_projeto.id_projetos
+membros_projeto.id_projetos,
+membros_projeto.cidade AS m_filial
 FROM projetos
 JOIN membros_projeto
 ON projetos.id = membros_projeto.id_projetos
@@ -48,6 +51,8 @@ FROM custos_totais;
 CREATE VIEW status_projetos AS
 SELECT gerentes.id AS id_gerente,
 gerentes.nome_sobrenome AS nome_completo,
+gerentes.cidade AS filial,
+gerentes.estado,
 projetos.id AS id_projeto,
 tarefas.status_tarefas,
 cadastro_projetos.descricao AS projeto_atual
